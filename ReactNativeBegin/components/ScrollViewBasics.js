@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, Text } from 'react-native';
+import { Image, ScrollView, Text, Button } from 'react-native';
 
 const logo = {
   uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -7,8 +7,14 @@ const logo = {
   height: 64
 };
 
-const ScrollViewBasics = () => (
+const ScrollViewBasics = ({ navigation }) => (
   <ScrollView>
+    <Button
+        title="Go to Flat List"
+        onPress={() =>
+            navigation.navigate('Flat List Component')
+        }
+    />
     <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
     <Image source={logo} />
     <Image source={logo} />
