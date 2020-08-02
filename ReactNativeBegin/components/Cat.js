@@ -9,6 +9,12 @@ const Cat = (props) => {
   const [disable, setDisable] = useState(true);
   return (
     <View>
+        <Button
+            title="Go to Scroll View"
+            onPress={() =>
+                props.navigation.navigate('Scroll View Component')
+            }
+        />
         <Text>
         Hello, I am {getFullName("Phung", "The", "Tai")}!
         </Text>

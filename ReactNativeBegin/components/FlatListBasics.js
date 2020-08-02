@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View, YellowBox } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,9 +17,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const FlatListBasics = () => {
+const FlatListBasics = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <Button
+          title="Go to Section List"
+          onPress={() =>
+              navigation.navigate('Section List Component')
+          }
+      />
       <FlatList
         data={[
           {key: 'Devin'},
