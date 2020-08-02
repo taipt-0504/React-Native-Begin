@@ -5,6 +5,7 @@ import Cat from './Cat';
 import ScrollViewBasics from './ScrollViewBasics';
 import FlatListBasics from './FlatListBasics';
 import SectionListBasics from './SectionListBasics';
+import Home from './Home';
 
 const Stack = createStackNavigator();
 
@@ -13,9 +14,14 @@ const NavigatorStack = ({ navigation }) => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Home Component"
+          component={Home}
+          options={{ title: 'Home' }}
+        />
+        <Stack.Screen
           name="Cat Component"
           component={Cat}
-          options={{ title: 'Welcome' }}
+          options={{ title: 'Cat Component' }}
         />
         <Stack.Screen name="Scroll View Component" component={ScrollViewBasics} />
         <Stack.Screen name="Flat List Component" component={FlatListBasics} />
