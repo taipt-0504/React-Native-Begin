@@ -25,6 +25,11 @@ const Home = ({ navigation }) => {
                 component="Section List Component"
                 navigation={ navigation }
             />
+            <NavigationButton
+                name="Go to State Basics Component"
+                component="State Basics Component"
+                navigation={ navigation }
+            />
         </View>
     )
 }
