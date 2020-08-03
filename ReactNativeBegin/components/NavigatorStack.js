@@ -6,6 +6,7 @@ import ScrollViewBasics from './ScrollViewBasics';
 import FlatListBasics from './FlatListBasics';
 import SectionListBasics from './SectionListBasics';
 import Home from './Home';
+import StateBasics from './StateBasics';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const NavigatorStack = ({ navigation }) => {
         <Stack.Screen name="Scroll View Component" component={ScrollViewBasics} />
         <Stack.Screen name="Flat List Component" component={FlatListBasics} />
         <Stack.Screen name="Section List Component" component={SectionListBasics} />
+        <Stack.Screen name="State Basics Component" component={StateBasics} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,11 +8,15 @@ import SectionListBasics from './components/SectionListBasics';
 import { NavigationContainer } from "@react-navigation/native";
 import NavigatorStack from './components/NavigatorStack';
 import Home from './components/Home';
+import StateBasics from './components/StateBasics';
+import GenerateColor from './components/GenerateColor';
 
 const App = () => {
   return (
+    // <StateBasics />
     // <Home />
-    <NavigatorStack />
+    <GenerateColor />
+    // <NavigatorStack />
     // <View>
     //     <Cat content="This is content props pass from parent to component"></Cat>
     // </View>
