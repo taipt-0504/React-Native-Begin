@@ -30,6 +30,16 @@ const Home = ({ navigation }) => {
                 component="State Basics Component"
                 navigation={ navigation }
             />
+            <NavigationButton
+                name="Go to Color Generator Component"
+                component="Color Generator Component"
+                navigation={ navigation }
+            />
+            <NavigationButton
+                name="Go to Color Adjust Component"
+                component="Color Adjust Component"
+                navigation={ navigation }
+            />
         </View>
     )
 }

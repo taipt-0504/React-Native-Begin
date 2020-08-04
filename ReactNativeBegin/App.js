@@ -10,13 +10,15 @@ import NavigatorStack from './components/NavigatorStack';
 import Home from './components/Home';
 import StateBasics from './components/StateBasics';
 import GenerateColor from './components/GenerateColor';
+import ColorAdjust from './components/ColorAdjust';
 
 const App = () => {
   return (
+    // <ColorAdjust />
     // <StateBasics />
     // <Home />
-    <GenerateColor />
-    // <NavigatorStack />
+    // <GenerateColor />
+    <NavigatorStack />
     // <View>
     //     <Cat content="This is content props pass from parent to component"></Cat>
     // </View>
