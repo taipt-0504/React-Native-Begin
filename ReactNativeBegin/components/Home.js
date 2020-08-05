@@ -40,6 +40,11 @@ const Home = ({ navigation }) => {
                 component="Color Adjust Component"
                 navigation={ navigation }
             />
+            <NavigationButton
+                name="Go to Restaurant Search"
+                component="Restaurant Search Component"
+                navigation={ navigation }
+            />
         </View>
     )
 }
