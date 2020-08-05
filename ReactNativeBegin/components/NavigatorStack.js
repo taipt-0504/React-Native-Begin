@@ -9,6 +9,7 @@ import Home from './Home';
 import StateBasics from './StateBasics';
 import GenerateColor from './GenerateColor';
 import ColorAdjust from './ColorAdjust';
+import RestaurantSearch from './RestaurantSearch';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const NavigatorStack = ({ navigation }) => {
         <Stack.Screen name="State Basics Component" component={StateBasics} />
         <Stack.Screen name="Color Generator Component" component={GenerateColor} />
         <Stack.Screen name="Color Adjust Component" component={ColorAdjust} />
+        <Stack.Screen name="Restaurant Search Component" component={RestaurantSearch} />
       </Stack.Navigator>
     </NavigationContainer>
   );
