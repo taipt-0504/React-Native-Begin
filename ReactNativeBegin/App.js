@@ -15,12 +15,12 @@ import RestaurantSearch from './components/RestaurantSearch';
 
 const App = () => {
   return (
-    <RestaurantSearch />
+    // <RestaurantSearch />
     // <ColorAdjust />
     // <StateBasics />
     // <Home />
     // <GenerateColor />
-    // <NavigatorStack />
+    <NavigatorStack />
     // <View>
     //     <Cat content="This is content props pass from parent to component"></Cat>
     // </View>
