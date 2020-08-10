@@ -12,6 +12,7 @@ import ColorAdjust from './ColorAdjust';
 import RestaurantSearch from './RestaurantSearch';
 import ResultDetail from './ResultDetail';
 import ResultItem from './ResultItem';
+import BlogIndex from './BlogIndex';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,7 @@ const NavigatorStack = ({ navigation }) => {
         <Stack.Screen name="Color Adjust Component" component={ColorAdjust} />
         <Stack.Screen name="Restaurant Search Component" component={RestaurantSearch} />
         <Stack.Screen name="Restaurant Detail Component" component={ResultDetail} />
+        <Stack.Screen name="Blog Component" component={BlogIndex} />
       </Stack.Navigator>
     </NavigationContainer>
   );
