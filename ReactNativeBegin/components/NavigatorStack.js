@@ -13,6 +13,7 @@ import RestaurantSearch from './RestaurantSearch';
 import ResultDetail from './ResultDetail';
 import ResultItem from './ResultItem';
 import BlogIndex from './BlogIndex';
+import ShowBlogPost from './ShowBlogPost';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const NavigatorStack = ({ navigation }) => {
         <Stack.Screen name="Restaurant Search Component" component={RestaurantSearch} />
         <Stack.Screen name="Restaurant Detail Component" component={ResultDetail} />
         <Stack.Screen name="Blog Component" component={BlogIndex} />
+        <Stack.Screen name="Blog Detail Component" component={ShowBlogPost} />
       </Stack.Navigator>
     </NavigationContainer>
   );
