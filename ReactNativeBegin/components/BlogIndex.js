@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Button } from 'react-native';
-import BlogContext, { BlogContextProvider } from '../contexts/BlogContextProvider';
+import { Context as BlogContext } from '../contexts/BlogContextProvider';
 import { FlatList } from 'react-native-gesture-handler';
+import BlogListItem from './BlogListItem';
 
 const BlogIndex = () => {
-    const { blogLists, addBlogPost } = useContext(BlogContext);
+    const { state } = useContext(BlogContext);
 
     return (
         <View style={{ flex: 1 }}>
@@ -12,13 +13,9 @@ const BlogIndex = () => {
                 This is blog list
                 </Text>
             <FlatList
-                data={blogLists}
+                data={state.blogLists}
                 keyExtractor={item => item.title}
-                renderItem={({ item }) => <Text>{item.title}</Text>}
-            />
-            <Button
-                title="Add"
-                onPress={addBlogPost}
+                renderItem={({ item }) => <BlogListItem blog={item}/>}
             />
         </View>
     )
