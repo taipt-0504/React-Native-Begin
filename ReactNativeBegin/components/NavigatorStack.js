@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Cat from './Cat';
 import ScrollViewBasics from './ScrollViewBasics';
@@ -11,13 +11,16 @@ import GenerateColor from './GenerateColor';
 import ColorAdjust from './ColorAdjust';
 import RestaurantSearch from './RestaurantSearch';
 import ResultDetail from './ResultDetail';
-import ResultItem from './ResultItem';
 import BlogIndex from './BlogIndex';
 import ShowBlogPost from './ShowBlogPost';
+import { TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import BlogCreate from './BlogCreate';
+import BlogEdit from './BlogEdit';
 
 const Stack = createStackNavigator();
 
-const NavigatorStack = ({ navigation }) => {
+const NavigatorStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -39,8 +42,45 @@ const NavigatorStack = ({ navigation }) => {
         <Stack.Screen name="Color Adjust Component" component={ColorAdjust} />
         <Stack.Screen name="Restaurant Search Component" component={RestaurantSearch} />
         <Stack.Screen name="Restaurant Detail Component" component={ResultDetail} />
-        <Stack.Screen name="Blog Component" component={BlogIndex} />
-        <Stack.Screen name="Blog Detail Component" component={ShowBlogPost} />
+        <Stack.Screen
+          name="Blog Component"
+          component={BlogIndex}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Blog Create Component')}
+              >
+                <Icon
+                  name="plus-circle"
+                  style={{ fontSize: 24, paddingRight: 5 }}
+                />
+              </TouchableOpacity>
+            )
+          })}
+        />
+        <Stack.Screen
+          name="Blog Detail Component"
+          component={ShowBlogPost}
+          options={({ navigation, route }) => ({
+            headerRight: () => {
+              let { id } = route.params;
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Blog Edit Component', {id})
+                  }}
+                >
+                  <Icon
+                    name="edit"
+                    style={{ fontSize: 24, paddingRight: 5 }}
+                  />
+                </TouchableOpacity>
+              )
+            }
+          })}
+        />
+        <Stack.Screen name="Blog Create Component" component={BlogCreate} />
+        <Stack.Screen name="Blog Edit Component" component={BlogEdit} />
       </Stack.Navigator>
     </NavigationContainer>
   );

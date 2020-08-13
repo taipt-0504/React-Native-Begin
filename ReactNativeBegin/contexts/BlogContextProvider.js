@@ -4,11 +4,19 @@ const reducer = (state, payload) => {
     switch (payload.type) {
         case 'create':
             let id = Math.round(Math.random() * 100000);
-            return { ...state, blogLists: [...state.blogLists, { id, title: `Title ${id}`, content: `content ${state.blogLists.length + 1}` }] };
+            return { ...state, blogLists: [...state.blogLists, { id, title: payload.title, content: payload.content }] };
         case 'delete':
-            return { ...state, blogLists: state.blogLists.filter(v => {
-                return v.id != payload.id;
-            })};
+            return {
+                ...state, blogLists: state.blogLists.filter(v => {
+                    return v.id != payload.id;
+                })
+            };
+        case 'edit':
+            return {
+                ...state, blogLists: [...state.blogLists.filter(v => {
+                    return v.id != payload.id;
+                }), { id: payload.id, title: payload.title, content: payload.content }]
+            };
 
         default:
             return state;
@@ -16,8 +24,16 @@ const reducer = (state, payload) => {
 }
 
 const addBlogPost = (dispatch) => {
-    return () => {
-        dispatch({ type: 'create' });
+    return (title, content, callback) => {
+        dispatch({ type: 'create', title, content });
+        callback();
+    }
+}
+
+const editBlogPost = (dispatch) => {
+    return (id, title, content, callback) => {
+        dispatch({ type: 'edit', id, title, content });
+        callback();
     }
 }
 
@@ -27,4 +43,8 @@ const deleteBlogPost = (dispatch) => {
     }
 }
 
-export const { Context, Provider } = createContextData(reducer, { addBlogPost, deleteBlogPost }, { blogLists: [] });
+export const { Context, Provider } = createContextData(
+    reducer,
+    { addBlogPost, deleteBlogPost, editBlogPost },
+    { blogLists: [{ id: 1, title: 'test', content: 'test' }] }
+);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 import NavigationButton from './NavigationButton';
 
 const Home = ({ navigation }) => {

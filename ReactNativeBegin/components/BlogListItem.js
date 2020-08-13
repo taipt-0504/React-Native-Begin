@@ -26,17 +26,17 @@ const BlogListItem = ({ blog }) => {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('Blog Detail Component', { id: blog.id })}>
-                <Text style={styles.icon}>
+        <View>
+            <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Blog Detail Component', { id: blog.id })}>
+                <Text style={styles.title}>
                     {blog.title}
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => deleteBlogPost(blog.id)}>
-                <Icon
-                    style={styles.icon}
-                    name='trash-2'
-                />
+                <TouchableOpacity onPress={() => deleteBlogPost(blog.id)}>
+                    <Icon
+                        style={styles.icon}
+                        name='trash-2'
+                    />
+                </TouchableOpacity>
             </TouchableOpacity>
         </View>
     )
