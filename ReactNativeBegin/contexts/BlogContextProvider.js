@@ -13,10 +13,19 @@ const reducer = (state, payload) => {
             };
         case 'edit':
             return {
-                ...state, blogLists: [...state.blogLists.filter(v => {
-                    return v.id != payload.id;
-                }), { id: payload.id, title: payload.title, content: payload.content }]
-            };
+                ...state, blogLists: state.blogLists.map((blog) => {
+                    if (blog.id == payload.id) {
+                        return { id: blog.id, title: payload.title, content: payload.content }
+                    } else {
+                        return blog;
+                    }
+                })
+            }
+        // return {
+        //     ...state, blogLists: [...state.blogLists.filter(v => {
+        //         return v.id != payload.id;
+        //     }), { id: payload.id, title: payload.title, content: payload.content }]
+        // };
 
         default:
             return state;
@@ -26,14 +35,19 @@ const reducer = (state, payload) => {
 const addBlogPost = (dispatch) => {
     return (title, content, callback) => {
         dispatch({ type: 'create', title, content });
-        callback();
+        if (callback) {
+            callback();
+        }
+
     }
 }
 
 const editBlogPost = (dispatch) => {
     return (id, title, content, callback) => {
         dispatch({ type: 'edit', id, title, content });
-        callback();
+        if (callback) {
+            callback();
+        }
     }
 }
 

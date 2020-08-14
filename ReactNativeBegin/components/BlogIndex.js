@@ -8,10 +8,7 @@ const BlogIndex = () => {
     const { state } = useContext(BlogContext);
 
     return (
-        <View style={{ flex: 1 }}>
-            <Text>
-                This is blog list
-                </Text>
+        <View>
             <FlatList
                 data={state.blogLists}
                 keyExtractor={item => item.title}
