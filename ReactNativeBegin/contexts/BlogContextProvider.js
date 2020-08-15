@@ -1,4 +1,5 @@
 import createContextData from './createContextData';
+import blogApi from '../api/blogApi';
 
 const reducer = (state, payload) => {
     switch (payload.type) {
@@ -21,11 +22,8 @@ const reducer = (state, payload) => {
                     }
                 })
             }
-        // return {
-        //     ...state, blogLists: [...state.blogLists.filter(v => {
-        //         return v.id != payload.id;
-        //     }), { id: payload.id, title: payload.title, content: payload.content }]
-        // };
+        case 'fetch':
+            return payload.data;
 
         default:
             return state;
@@ -33,17 +31,18 @@ const reducer = (state, payload) => {
 }
 
 const addBlogPost = (dispatch) => {
-    return (title, content, callback) => {
-        dispatch({ type: 'create', title, content });
+    return async (title, content, callback) => {
+        await blogApi.post('blogLists', { title, content })
+        // dispatch({ type: 'create', title, content });
         if (callback) {
             callback();
         }
-
     }
 }
 
 const editBlogPost = (dispatch) => {
-    return (id, title, content, callback) => {
+    return async (id, title, content, callback) => {
+        await blogApi.put(`blogLists/${id}`, { title, content })
         dispatch({ type: 'edit', id, title, content });
         if (callback) {
             callback();
@@ -52,13 +51,22 @@ const editBlogPost = (dispatch) => {
 }
 
 const deleteBlogPost = (dispatch) => {
-    return (id) => {
+    return async (id) => {
+        await blogApi.delete(`blogLists/${id}`);
         dispatch({ type: 'delete', id });
+        // fetchBlogLists();
+    }
+}
+
+const fetchBlogLists = (dispatch) => {
+    return async () => {
+        let response = await blogApi.get('blogLists');
+        dispatch({ type: 'fetch', data: { blogLists: response.data } });
     }
 }
 
 export const { Context, Provider } = createContextData(
     reducer,
-    { addBlogPost, deleteBlogPost, editBlogPost },
-    { blogLists: [{ id: 1, title: 'test', content: 'test' }] }
+    { addBlogPost, deleteBlogPost, editBlogPost, fetchBlogLists },
+    { blogLists: [] }
 );
