@@ -12,7 +12,8 @@ import StateBasics from './components/StateBasics';
 import GenerateColor from './components/GenerateColor';
 import ColorAdjust from './components/ColorAdjust';
 import RestaurantSearch from './components/RestaurantSearch';
-import { Provider } from './contexts/BlogContextProvider';
+import { Provider as BlogContextProvider } from './contexts/BlogContextProvider';
+import { Provider as AuthContextProvider } from './contexts/AuthContextProvider';
 
 const App = () => {
   return (
@@ -21,9 +22,11 @@ const App = () => {
     // <StateBasics />
     // <Home />
     // <GenerateColor />
-    <Provider>
-      <NavigatorStack />
-    </Provider>
+    <AuthContextProvider>
+      <BlogContextProvider>
+        <NavigatorStack />
+      </BlogContextProvider>
+    </AuthContextProvider>
     // <View>
     //     <Cat content="This is content props pass from parent to component"></Cat>
     // </View>

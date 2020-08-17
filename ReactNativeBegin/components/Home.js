@@ -1,10 +1,18 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, ScrollView } from 'react-native';
 import NavigationButton from './NavigationButton';
+import { Context as AuthContext } from '../contexts/AuthContextProvider';
+import { useNavigation } from '@react-navigation/native';
 
-const Home = ({ navigation }) => {
+const Home = () => {
+    const navigation = useNavigation();
+    const { state, autoLogin } = useContext(AuthContext);
+    useEffect(() => {
+        autoLogin();
+    }, []);
+    
     return (
-        <View style={{ alignItems: "center" }}>
+        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
             <NavigationButton
                 name="Go to Cat Component"
                 component="Cat Component"
@@ -50,7 +58,26 @@ const Home = ({ navigation }) => {
                 component="Blog Component"
                 navigation={navigation}
             />
-        </View>
+            {
+                !state.token ?
+                    <NavigationButton
+                        name="Go to Track App"
+                        component="Register Track App Component"
+                        navigation={navigation}
+                    />
+                    :
+                    <NavigationButton
+                        name="Go to Track App"
+                        component="Track App Component"
+                        navigation={navigation}
+                    />
+            }
+            <NavigationButton
+                name="Go to Activity Indicator"
+                component="Loading Component"
+                navigation={navigation}
+            />
+        </ScrollView>
     )
 }
 

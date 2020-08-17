@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Cat from './Cat';
 import ScrollViewBasics from './ScrollViewBasics';
@@ -17,10 +17,18 @@ import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import BlogCreate from './BlogCreate';
 import BlogEdit from './BlogEdit';
+import TrackApp from './TrackerApp/TrackApp';
+import TrackDetail from './TrackerApp/TrackDetail';
+import { Context as AuthContext } from '../contexts/AuthContextProvider';
+import Register from './TrackerApp/Register';
+import Login from './TrackerApp/Login';
+import Loading from './Loading';
 
 const Stack = createStackNavigator();
 
 const NavigatorStack = () => {
+  const { state } = useContext(AuthContext);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -67,7 +75,7 @@ const NavigatorStack = () => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('Blog Edit Component', {id})
+                    navigation.navigate('Blog Edit Component', { id })
                   }}
                 >
                   <Icon
@@ -81,6 +89,34 @@ const NavigatorStack = () => {
         />
         <Stack.Screen name="Blog Create Component" component={BlogCreate} />
         <Stack.Screen name="Blog Edit Component" component={BlogEdit} />
+        <Stack.Screen name="Loading Component" component={Loading} />
+        {
+          !state.token ?
+            <>
+              <Stack.Screen
+                options={{
+                  headerShown: false,
+                }}
+                name="Register Track App Component" component={Register} />
+              <Stack.Screen
+                options={{
+                  headerShown: false,
+                }}
+                name="Login Track App Component" component={Login} />
+            </>
+            :
+            <>
+              <Stack.Screen
+                name="Track Detail"
+                component={TrackDetail}
+              />
+              <Stack.Screen
+                options={{
+                  headerShown: false,
+                }}
+                name="Track App Component" component={TrackApp} />
+            </>
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
