@@ -2,6 +2,10 @@
   package="com.reactnativebegin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
       android:name=".MainApplication"
@@ -22,6 +26,9 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBEugEdn1Sng5UAf2tVfTvNSqd42AXJ8Ho"/>
     </application>
 
 </manifest>
