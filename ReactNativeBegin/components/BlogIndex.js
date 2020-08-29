@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 const BlogIndex = () => {
     const { state, fetchBlogLists } = useContext(BlogContext);
     const navigation = useNavigation();
+    console.log(state);
     
     useEffect(() => {
         fetchBlogLists()

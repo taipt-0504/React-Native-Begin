@@ -1,41 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { View, Text } from 'react-native';
-import MapView from 'react-native-maps';
-import * as Location from 'expo-location';
+import { Context as LocationContext } from '../../contexts/LocationContextProvider';
+import Map from './Map';
+import useLocation from '../../hooks/useLocation';
+import { useIsFocused } from '@react-navigation/native';
+import TrackForm from './TrackForm';
 
 const TrackCreate = () => {
-    const [err, setErr] = useState('');
-    const requestPermission = async () => {
-        try {
-            let { status } = await Location.requestPermissionsAsync();
-            if (status !== 'granted') {
-                setErr('Permission to access location was denied');
-              }
-        
-              let location = await Location.getCurrentPositionAsync({});
-              console.log(location);
-        } catch (error) {
-            console.log(error);
-            setErr('error');
-        }
-    }
-    useEffect(() => {
-        requestPermission();
-    }, []);
-
+    const { addLocation, state } = useContext(LocationContext);
+    const isFocused = useIsFocused();
+    const callback = useCallback((location) => {
+        addLocation(location, state.recording);
+    }, [state.recording]);
+    const [err] = useLocation(isFocused || state.recording, callback);
+    
     return (
         <View>
             <Text>TrackCreate</Text>
-            <MapView
-                style={{ height: 300 }}
-                initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.05,
-                    longitudeDelta: 0.05
-                }}
-            />
-            { err ? <Text>{err}</Text> : null }
+            <Map />
+            {err ? <Text>{err}</Text> : null}
+            <TrackForm />
         </View>
     );
 }

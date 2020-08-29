@@ -9,7 +9,7 @@ const Account = ({ navigation }) => {
     return (
         <View>
             <Button
-                title="Navigation to Something"
+                title="Logout"
                 onPress={() => {
                     logout(navigation.navigate('Home Component'))
                 }}

@@ -14,6 +14,8 @@ import ColorAdjust from './components/ColorAdjust';
 import RestaurantSearch from './components/RestaurantSearch';
 import { Provider as BlogContextProvider } from './contexts/BlogContextProvider';
 import { Provider as AuthContextProvider } from './contexts/AuthContextProvider';
+import { Provider as LocationContextProvider } from './contexts/LocationContextProvider';
+import { Provider as TrackContextProvider } from './contexts/TrackContextProvider';
 
 const App = () => {
   return (
@@ -22,11 +24,15 @@ const App = () => {
     // <StateBasics />
     // <Home />
     // <GenerateColor />
-    <AuthContextProvider>
-      <BlogContextProvider>
-        <NavigatorStack />
-      </BlogContextProvider>
-    </AuthContextProvider>
+    <TrackContextProvider>
+      <LocationContextProvider>
+        <AuthContextProvider>
+          <BlogContextProvider>
+            <NavigatorStack />
+          </BlogContextProvider>
+        </AuthContextProvider>
+      </LocationContextProvider>
+    </TrackContextProvider>
     // <View>
     //     <Cat content="This is content props pass from parent to component"></Cat>
     // </View>
